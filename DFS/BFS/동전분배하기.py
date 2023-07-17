@@ -7,11 +7,9 @@ for _ in range(n):
 
 def dfs(l):
     global min_diff
-    global sum
     if l == n:
         if len(set(sum)) == 3:
             min_diff = min(min_diff, max(sum) - min(sum))
-        return
     else:
         for i in range(len(sum)):
             sum[i] += coins[l]
