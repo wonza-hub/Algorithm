@@ -3,7 +3,7 @@ sum = [0] * 3
 min_diff = 10e9
 coins = []
 for _ in range(n):
-    coins.appned(int(input()))
+    coins.append(int(input()))
 
 def dfs(l):
     global min_diff
