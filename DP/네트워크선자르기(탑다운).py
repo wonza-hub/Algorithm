@@ -1,4 +1,6 @@
 def dfs(len):
+    if dy[len] > 0:
+        return dy[len]
     if len == 1 or len==2:
         return len
     else:
