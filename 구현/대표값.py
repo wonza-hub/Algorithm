@@ -1,6 +1,6 @@
 n = int(input())
 scores = list(map(int, input().split()))
-avg = round(sum(scores) / n) 
+avg = int(sum(scores) / n + 0.5)
 min_diff = 10e9
 ans = 1
 
