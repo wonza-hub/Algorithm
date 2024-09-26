@@ -19,3 +19,20 @@ def solution(scoville, K):
         answer += 1
         
     return answer
+
+# 복습 풀이
+import heapq as hq
+
+def solution(scoville, K):
+    hq.heapify(scoville)
+    answer = 0
+    while len(scoville) > 1 and scoville[0] < K:
+        answer += 1
+        a = hq.heappop(scoville)
+        b = hq.heappop(scoville)
+        c = a + 2 * b
+        hq.heappush(scoville, c)
+    if scoville[0] < K:
+        answer = -1
+    
+    return answer
