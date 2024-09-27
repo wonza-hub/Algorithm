@@ -1,0 +1,15 @@
+-- MEMBER_PROFILE 
+-- MEMBER_ID, MEMBER_NAME, TLNO, GENDER, DATE_OF_BIRTH는 회원 ID, 회원 이름, 회원 연락처, 성별, 생년월일
+--  ID, 이름, 성별, 생년월일
+-- 생일이 3월인 여성 회원
+-- 전화번호가 NULL인 경우는 출력대상에서 제외
+-- 회원ID를 기준으로 오름차순 정렬
+-- 
+-- DATE_OF_BIRTH의 데이트 포맷이 예시와 동일
+
+SELECT MEMBER_ID, MEMBER_NAME, GENDER, DATE_FORMAT(DATE_OF_BIRTH, '%Y-%m-%d') AS DATE_OF_BIRTH
+FROM MEMBER_PROFILE
+WHERE DATE_FORMAT(DATE_OF_BIRTH, '%m') = 3
+AND GENDER='W'
+AND TLNO IS NOT NULL
+ORDER BY MEMBER_ID ASC
