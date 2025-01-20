@@ -1,4 +1,4 @@
-# 하노이 탑 (백준)
+# 하노이 탑 이동 순서(백준)
 def hanoi(n,s,e,o):
     if n==0:
         return
@@ -11,6 +11,19 @@ answer = []
 print(2**n-1) # 이동 횟수 공식
 if n <= 20:
     hanoi(n,1,3,2)
+
+# 복습 풀이
+def hanoi(n,s,e,o):
+    # base condition
+    if n==0:
+        return
+    hanoi(n-1,s,o,e)
+    print(s,e)
+    hanoi(n-1,o,e,s)
+
+n=int(input())
+print(2**n-1)
+hanoi(n,1,3,2)
 
 # 하노이의 탑 (프로그래머스)
 def move_disk(s,e):
