@@ -11,7 +11,7 @@ class Trie:
             if ch not in cur:
                 cur[ch]={} # 정점이 해당 문자가 아닌 경우, 키:값 을 문자:{}로 하는 요소 추가
             cur=cur[ch] # 다음 정점 탐색
-        # 문자열이 트라이에 존재하는 경우, * 키:값 을 *:Boolean로 하는 표시 추가
+        # 문자열이 존재한다는 표시를 나타내기 위해, * 키:값 을 *:Boolean로 하는 표시 추가
         cur['*']=True
 
     def search(self,word):
