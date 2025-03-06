@@ -34,3 +34,4 @@ for i in range(3,n+1):
     d[i]=max(d[i-3]+arr[i]+arr[i-1],d[i-2]+arr[i],d[i-1])
 
 print(max(d))
+
