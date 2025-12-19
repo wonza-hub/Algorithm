@@ -33,6 +33,42 @@ while q:
                 
 print(graph[target_x - 1][target_y - 1])
 
+# 복습 풀이
+import sys
+input=sys.stdin.readline
+from collections import deque
+
+dx=[-1,0,1,0]
+dy=[0,1,0,-1]
+
+n,k=map(int,input().split())
+arr=[[0]*(n+1)]+[[0]+list(map(int,input().split())) for _ in range(n)]
+s,x,y=map(int,input().split())
+
+def bfs():
+	while q:
+		v,x,y,t=q.popleft()
+		if t==s:
+			break
+		for i in range(4):
+			nx=x+dx[i]
+			ny=y+dy[i]
+			if nx<=0 or nx>n or ny<=0 or ny>n or arr[nx][ny]!=0:
+				continue
+			arr[nx][ny]=v
+			q.append((v,nx,ny,t+1))
+
+tmp=[]
+for i in range(1,n+1):
+	for j in range(1,n+1):
+		if arr[i][j]==0:
+			continue
+		tmp.append((arr[i][j],i,j,0))
+tmp.sort(key=lambda x:x[0])
+q=deque(tmp)
+
+bfs()
+print(arr[x][y] if arr[x][y]!=0 else 0)
 
 
         
