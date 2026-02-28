@@ -40,3 +40,23 @@ def solution(genres, plays):
         ans+=tmp[:min(len(tmp),2)]
     
     return ans
+
+# 2회 복습 풀이
+from collections import defaultdict
+
+def solution(genres, plays):
+    ans=[]
+    d=defaultdict(list)
+    pd=defaultdict(int)
+    for i,gp in enumerate(zip(genres,plays)):
+        g,p=gp
+        d[g].append([i,p])
+        pd[g]+=p
+
+    tmp=sorted(list(pd.items()),key=lambda x:-x[1])
+
+    for g,_ in tmp:
+        d[g].sort(key=lambda x:(-x[1],x[0]))
+        ans.extend([i for i,p in d[g][:2]])
+        
+    return ans
