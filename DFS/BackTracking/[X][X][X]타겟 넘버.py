@@ -50,3 +50,22 @@ def solution(numbers, target):
     dfs(0, 0, target, numbers)
     
     return answer
+
+# 복습 풀이 2
+def dfs(i,sum,target,numbers):
+    global answer
+
+    if i==len(numbers):
+        if sum==target:
+            answer+=1
+        return
+    
+    dfs(i+1,sum+numbers[i],target,numbers)
+    dfs(i+1,sum-numbers[i],target,numbers)
+    
+def solution(numbers, target):
+    global answer
+    answer = 0
+    dfs(0,0,target,numbers)
+    
+    return answer
