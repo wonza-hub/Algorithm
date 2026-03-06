@@ -47,4 +47,25 @@ def solution(n, edge):
     return dis.count(max(dis))
                     
         
+# 복습 풀이
+from collections import deque
+
+def solution(n, edge):
+    answer = 0
+    graph=[[] for _ in range(n+1)]
+    for a,b in edge:
+        graph[a].append(b)
+        graph[b].append(a)
+    dis=[-1]*(n+1)
+    dis[1]=0
     
+    q=deque([(1,0)])
+    while q:
+        x,d=q.popleft()
+        for v in graph[x]:
+            if dis[v]==-1:
+                dis[v]=d+1
+                q.append((v,d+1))
+    ans=max(dis[1:])
+    
+    return dis.count(ans)
