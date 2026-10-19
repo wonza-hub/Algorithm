@@ -63,3 +63,51 @@ def solution(n, info):
     max_diff = 0
     dfs(info, -1, 0, 0, 0, n, [])
     return [-1] if answer == [] else answer
+
+# 복습 풀이
+def dfs(l,info,cnt,어피치점수,라이언점수,n,res):
+    global 최대점수차,ans
+    # n보다 많이 쏜 경우
+    if cnt>n:
+        return
+    # 게임 끝
+    if l==10:
+        # 비긴 경우
+        if 어피치점수>=라이언점수:
+            return
+        # 화살 덜 쏜 경우
+        if cnt<n:
+            res[-1]=n-cnt # 남은 화살은 모두 0점에 배치
+        점수차=라이언점수-어피치점수
+        if 최대점수차>점수차:
+            return
+        # 기록 갱신
+        if 최대점수차<점수차:
+            최대점수차=점수차
+            ans=res[:]
+        # 이전 최고 기록과 같은 경우
+        else:
+            for i in range(10,-1,-1):
+                if res[i]!=ans[i]:
+                    if res[i]>ans[i]:
+                        ans=res[:]
+                    break
+        
+        return
+    
+    # k: 점수   
+    next=l+1
+    k=10-next
+        
+    # 점수를 얻거나 못 얻는 경우 => 비김: a = b = 0 or 짐: a >= b
+    dfs(next,info,cnt,어피치점수+(k if info[next]>0 else 0),라이언점수,n,res+[0])
+    # 점수를 내주는 경우 => 이김: a < b
+    dfs(next,info,cnt+info[next]+1,어피치점수,라이언점수+k,n,res+[info[next]+1])
+    
+def solution(n, info):
+    global 최대점수차,ans
+    ans = []
+    최대점수차=0
+    dfs(-1,info,0,0,0,n,[])
+        
+    return [-1] if ans==[] else ans
